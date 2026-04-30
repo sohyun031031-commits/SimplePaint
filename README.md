@@ -47,8 +47,14 @@
 - 코드의 실행 스크린샷과 구현 내용 설명
 
 ![실행화면](img/screenshot-3.png)
+<img width="1642" height="589" alt="스크린샷 2026-04-30 122310" src="https://github.com/user-attachments/assets/227dfe2c-d228-4e0e-abd8-6ff2411d3968" />
+<img width="141" height="302" alt="스크린샷 2026-04-30 122320" src="https://github.com/user-attachments/assets/d79718fe-c6a4-40b7-acb0-ab2e9edb64af" />
+
 
 - 구현한내용(위그림참조)
+	- 그려진 그림을 이미지 파일로 저장하는 기능 구현
+	- 파일 저장을 위한 대화 상자인 SaveFileDialog 사용
+	- .png, .jpg, .bmp 형식으로 저장 가능
 
 
 ## 실행화면(과제4)
