@@ -40,11 +40,15 @@ namespace SimplePaint
             trbLineWidth = new TrackBar();
             btnOpenFile = new Button();
             btnSaveFile = new Button();
+            pnlCanvas = new Panel();
             picCanvas = new PictureBox();
+            btnSizeUp = new Button();
+            btnSizeDown = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trbLineWidth).BeginInit();
+            pnlCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCanvas).BeginInit();
             SuspendLayout();
             // 
@@ -146,7 +150,7 @@ namespace SimplePaint
             // btnOpenFile
             // 
             btnOpenFile.BackColor = Color.MistyRose;
-            btnOpenFile.Location = new Point(577, 107);
+            btnOpenFile.Location = new Point(577, 80);
             btnOpenFile.Name = "btnOpenFile";
             btnOpenFile.Size = new Size(59, 67);
             btnOpenFile.TabIndex = 4;
@@ -156,32 +160,65 @@ namespace SimplePaint
             // btnSaveFile
             // 
             btnSaveFile.BackColor = Color.PowderBlue;
-            btnSaveFile.Location = new Point(642, 107);
+            btnSaveFile.Location = new Point(643, 80);
             btnSaveFile.Name = "btnSaveFile";
             btnSaveFile.Size = new Size(59, 67);
             btnSaveFile.TabIndex = 5;
             btnSaveFile.Text = "저장";
             btnSaveFile.UseVisualStyleBackColor = false;
             // 
+            // pnlCanvas
+            // 
+            pnlCanvas.AutoScroll = true;
+            pnlCanvas.BackColor = Color.LightGray;
+            pnlCanvas.BorderStyle = BorderStyle.FixedSingle;
+            pnlCanvas.Controls.Add(picCanvas);
+            pnlCanvas.Location = new Point(19, 194);
+            pnlCanvas.Name = "pnlCanvas";
+            pnlCanvas.Size = new Size(682, 351);
+            pnlCanvas.TabIndex = 7;
+            // 
             // picCanvas
             // 
             picCanvas.BackColor = Color.White;
-            picCanvas.BorderStyle = BorderStyle.FixedSingle;
-            picCanvas.Location = new Point(19, 194);
+            picCanvas.Location = new Point(0, 0);
             picCanvas.Name = "picCanvas";
             picCanvas.Size = new Size(682, 351);
+            picCanvas.SizeMode = PictureBoxSizeMode.AutoSize;
             picCanvas.TabIndex = 6;
             picCanvas.TabStop = false;
             picCanvas.MouseDown += picCanvas_MouseDown;
             picCanvas.MouseMove += picCanvas_MouseMove;
             picCanvas.MouseUp += picCanvas_MouseUp;
             // 
+            // btnSizeUp
+            // 
+            btnSizeUp.BackColor = Color.Silver;
+            btnSizeUp.Location = new Point(577, 153);
+            btnSizeUp.Name = "btnSizeUp";
+            btnSizeUp.Size = new Size(59, 35);
+            btnSizeUp.TabIndex = 8;
+            btnSizeUp.Text = "확대";
+            btnSizeUp.UseVisualStyleBackColor = false;
+            // 
+            // btnSizeDown
+            // 
+            btnSizeDown.BackColor = Color.Silver;
+            btnSizeDown.Location = new Point(643, 153);
+            btnSizeDown.Name = "btnSizeDown";
+            btnSizeDown.Size = new Size(59, 35);
+            btnSizeDown.TabIndex = 9;
+            btnSizeDown.Text = "축소";
+            btnSizeDown.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(717, 557);
-            Controls.Add(picCanvas);
+            Controls.Add(btnSizeDown);
+            Controls.Add(btnSizeUp);
+            Controls.Add(pnlCanvas);
             Controls.Add(btnSaveFile);
             Controls.Add(btnOpenFile);
             Controls.Add(groupBox3);
@@ -195,6 +232,8 @@ namespace SimplePaint
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trbLineWidth).EndInit();
+            pnlCanvas.ResumeLayout(false);
+            pnlCanvas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picCanvas).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -213,6 +252,11 @@ namespace SimplePaint
         private Button btnOpenFile;
         private Button btnSaveFile;
         private TrackBar trbLineWidth;
+        private Panel pnlCanvas;
         private PictureBox picCanvas;
+        private Button btnSizeUp;
+        private Button btnSizeDown;
     }
 }
+
+
