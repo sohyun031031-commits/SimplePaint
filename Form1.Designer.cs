@@ -28,12 +28,186 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            lblAppName = new Label();
+            groupBox1 = new GroupBox();
+            btnLine = new Button();
+            btnRectangle = new Button();
+            btnCircle = new Button();
+            groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
+            btnOpenFile = new Button();
+            btnSaveFile = new Button();
+            cmbColor = new ComboBox();
+            trbLineWidth = new TrackBar();
+            picCanvas = new PictureBox();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trbLineWidth).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picCanvas).BeginInit();
+            SuspendLayout();
+            // 
+            // lblAppName
+            // 
+            lblAppName.AutoSize = true;
+            lblAppName.Font = new Font("맑은 고딕", 36F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            lblAppName.Location = new Point(12, 9);
+            lblAppName.Name = "lblAppName";
+            lblAppName.Size = new Size(314, 65);
+            lblAppName.TabIndex = 0;
+            lblAppName.Text = "Simple Paint";
+            lblAppName.Click += label1_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(btnCircle);
+            groupBox1.Controls.Add(btnRectangle);
+            groupBox1.Controls.Add(btnLine);
+            groupBox1.Location = new Point(19, 80);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(232, 108);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "도형 선택";
+            // 
+            // btnLine
+            // 
+            btnLine.Image = (Image)resources.GetObject("btnLine.Image");
+            btnLine.ImageAlign = ContentAlignment.TopCenter;
+            btnLine.Location = new Point(7, 27);
+            btnLine.Name = "btnLine";
+            btnLine.Size = new Size(68, 67);
+            btnLine.TabIndex = 0;
+            btnLine.Text = "직선";
+            btnLine.TextAlign = ContentAlignment.BottomCenter;
+            btnLine.UseVisualStyleBackColor = true;
+            // 
+            // btnRectangle
+            // 
+            btnRectangle.Image = (Image)resources.GetObject("btnRectangle.Image");
+            btnRectangle.ImageAlign = ContentAlignment.TopCenter;
+            btnRectangle.Location = new Point(81, 27);
+            btnRectangle.Name = "btnRectangle";
+            btnRectangle.Size = new Size(68, 67);
+            btnRectangle.TabIndex = 1;
+            btnRectangle.Text = "사각형";
+            btnRectangle.TextAlign = ContentAlignment.BottomCenter;
+            btnRectangle.UseVisualStyleBackColor = true;
+            // 
+            // btnCircle
+            // 
+            btnCircle.Image = (Image)resources.GetObject("btnCircle.Image");
+            btnCircle.ImageAlign = ContentAlignment.TopCenter;
+            btnCircle.Location = new Point(155, 27);
+            btnCircle.Name = "btnCircle";
+            btnCircle.Size = new Size(68, 67);
+            btnCircle.TabIndex = 2;
+            btnCircle.Text = "원";
+            btnCircle.TextAlign = ContentAlignment.BottomCenter;
+            btnCircle.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(cmbColor);
+            groupBox2.Location = new Point(266, 80);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(110, 108);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "색 선택";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(trbLineWidth);
+            groupBox3.Location = new Point(391, 80);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(169, 108);
+            groupBox3.TabIndex = 3;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "선 두께";
+            // 
+            // btnOpenFile
+            // 
+            btnOpenFile.BackColor = Color.MistyRose;
+            btnOpenFile.Location = new Point(577, 107);
+            btnOpenFile.Name = "btnOpenFile";
+            btnOpenFile.Size = new Size(59, 67);
+            btnOpenFile.TabIndex = 4;
+            btnOpenFile.Text = "열기";
+            btnOpenFile.UseVisualStyleBackColor = false;
+            // 
+            // btnSaveFile
+            // 
+            btnSaveFile.BackColor = Color.PowderBlue;
+            btnSaveFile.Location = new Point(642, 107);
+            btnSaveFile.Name = "btnSaveFile";
+            btnSaveFile.Size = new Size(59, 67);
+            btnSaveFile.TabIndex = 5;
+            btnSaveFile.Text = "저장";
+            btnSaveFile.UseVisualStyleBackColor = false;
+            // 
+            // cmbColor
+            // 
+            cmbColor.FormattingEnabled = true;
+            cmbColor.Items.AddRange(new object[] { "Black 검정", "Red 빨강", "Blue 파랑", "Green 녹색" });
+            cmbColor.Location = new Point(6, 50);
+            cmbColor.Name = "cmbColor";
+            cmbColor.Size = new Size(98, 23);
+            cmbColor.TabIndex = 0;
+            // 
+            // trbLineWidth
+            // 
+            trbLineWidth.Location = new Point(6, 38);
+            trbLineWidth.Name = "trbLineWidth";
+            trbLineWidth.Size = new Size(157, 45);
+            trbLineWidth.TabIndex = 0;
+            // 
+            // picCanvas
+            // 
+            picCanvas.Location = new Point(19, 194);
+            picCanvas.Name = "picCanvas";
+            picCanvas.Size = new Size(682, 351);
+            picCanvas.TabIndex = 6;
+            picCanvas.TabStop = false;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Text = "Form1";
+            ClientSize = new Size(717, 557);
+            Controls.Add(picCanvas);
+            Controls.Add(btnSaveFile);
+            Controls.Add(btnOpenFile);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(lblAppName);
+            Name = "Form1";
+            Text = "Simple Paint v1.0";
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trbLineWidth).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picCanvas).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblAppName;
+        private GroupBox groupBox1;
+        private Button btnCircle;
+        private Button btnRectangle;
+        private Button btnLine;
+        private GroupBox groupBox2;
+        private ComboBox cmbColor;
+        private GroupBox groupBox3;
+        private Button btnOpenFile;
+        private Button btnSaveFile;
+        private TrackBar trbLineWidth;
+        private PictureBox picCanvas;
     }
 }
