@@ -18,6 +18,8 @@ namespace SimplePaint
         private ToolType currentTool = ToolType.Line;  // 현재 선택된 도형
         private Color currentColor = Color.Black;      // 현재 색상
         private int currentLineWidth = 2;              // 현재 선 두께
+        private float zoomLevel = 1.0f;                // 확대/축소 레벨
+        private string currentFilePath = "";           // 현재 열려있는 파일 경로
 
         public Form1()
         {
@@ -54,6 +56,12 @@ namespace SimplePaint
 
             // 저장버튼이벤트연결
             btnSaveFile.Click += btnSaveFile_Click;
+
+            // 열기버튼이벤트연결
+            btnOpenFile.Click += btnOpenFile_Click;
+
+            // 마우스휠이벤트연결(확대/축소)
+            picCanvas.MouseWheel += picCanvas_MouseWheel;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -216,6 +224,111 @@ namespace SimplePaint
                 {
                     MessageBox.Show($"파일 저장 중 오류가 발생했습니다.\n{ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void btnOpenFile_Click(object sender, EventArgs e)
+        {
+            // OpenFileDialog 생성
+            OpenFileDialog openDialog = new OpenFileDialog();
+
+            // 파일 필터 설정
+            openDialog.Filter = "이미지 파일 (*.png, *.jpg, *.bmp)|*.png;*.jpg;*.jpeg;*.bmp|PNG 이미지 (*.png)|*.png|JPG 이미지 (*.jpg)|*.jpg|BMP 이미지 (*.bmp)|*.bmp|모든 파일 (*.*)|*.*";
+            openDialog.Title = "이미지 파일 열기";
+
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // 기존 비트맵과 그래픽 객체 해제
+                    canvasGraphics?.Dispose();
+                    canvasBitmap?.Dispose();
+
+                    // 새 이미지 로드
+                    Bitmap loadedImage = new Bitmap(openDialog.FileName);
+                    currentFilePath = openDialog.FileName;
+
+                    // 캔버스 크기를 로드한 이미지 크기로 설정
+                    canvasBitmap = new Bitmap(loadedImage.Width, loadedImage.Height);
+                    canvasGraphics = Graphics.FromImage(canvasBitmap);
+
+                    // 로드한 이미지를 캔버스에 그리기
+                    canvasGraphics.DrawImage(loadedImage, 0, 0);
+                    loadedImage.Dispose();
+
+                    // PictureBox 크기 조정
+                    picCanvas.Width = canvasBitmap.Width;
+                    picCanvas.Height = canvasBitmap.Height;
+                    picCanvas.Image = canvasBitmap;
+
+                    // 줌 레벨 리셋
+                    zoomLevel = 1.0f;
+
+                    // 폼 크기 조정 (필요시)
+                    if (canvasBitmap.Width > 700 || canvasBitmap.Height > 400)
+                    {
+                        this.Width = Math.Min(canvasBitmap.Width + 50, 1200);
+                        this.Height = Math.Min(canvasBitmap.Height + 250, 800);
+                    }
+
+                    MessageBox.Show($"이미지가 로드되었습니다.\n크기: {canvasBitmap.Width}x{canvasBitmap.Height}px", "로드 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"파일을 열 수 없습니다.\n{ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void picCanvas_MouseWheel(object sender, MouseEventArgs e)
+        {
+            // 마우스휠 스크롤로 확대/축소 (Ctrl 키 필요)
+            if (ModifierKeys == Keys.Control)
+            {
+                if (e.Delta > 0)
+                {
+                    // 확대 (마우스휠 위로)
+                    ZoomImage(1.1f);
+                }
+                else
+                {
+                    // 축소 (마우스휠 아래로)
+                    ZoomImage(0.9f);
+                }
+
+                // MouseWheel 이벤트 처리됨 표시
+                ((HandledMouseEventArgs)e).Handled = true;
+            }
+        }
+
+        private void ZoomImage(float factor)
+        {
+            // 줌 레벨 업데이트 (최소 0.5배, 최대 5배)
+            float newZoom = zoomLevel * factor;
+            if (newZoom >= 0.5f && newZoom <= 5.0f)
+            {
+                zoomLevel = newZoom;
+
+                // PictureBox 크기 조정
+                int newWidth = (int)(canvasBitmap.Width * zoomLevel);
+                int newHeight = (int)(canvasBitmap.Height * zoomLevel);
+
+                picCanvas.Width = newWidth;
+                picCanvas.Height = newHeight;
+
+                // PictureBox 다시 그리기
+                picCanvas.Invalidate();
+            }
+        }
+
+        private void ApplyZoom(Graphics g, int x, int y, int width, int height)
+        {
+            // 확대/축소 적용하여 그리기
+            if (zoomLevel != 1.0f)
+            {
+                g.TranslateTransform(x, y);
+                g.ScaleTransform(zoomLevel, zoomLevel);
+                g.TranslateTransform(-x, -y);
             }
         }
     }
