@@ -51,6 +51,9 @@ namespace SimplePaint
             trbLineWidth.Maximum = 10;   // 최대값
             trbLineWidth.Value = 2;
             trbLineWidth.ValueChanged += trbLineWidth_ValueChanged;
+
+            // 저장버튼이벤트연결
+            btnSaveFile.Click += btnSaveFile_Click;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -164,6 +167,56 @@ namespace SimplePaint
         private void trbLineWidth_ValueChanged(object sender, EventArgs e)
         { 
             currentLineWidth = trbLineWidth.Value; 
+        }
+
+        private void btnSaveFile_Click(object sender, EventArgs e)
+        {
+            // SaveFileDialog 생성
+            SaveFileDialog saveDialog = new SaveFileDialog();
+
+            // 파일 필터 설정 (3가지 형식)
+            saveDialog.Filter = "PNG 이미지 (*.png)|*.png|JPG 이미지 (*.jpg)|*.jpg|BMP 이미지 (*.bmp)|*.bmp|모든 파일 (*.*)|*.*";
+
+            // 기본 파일명 설정
+            saveDialog.FileName = "drawing";
+
+            // 대화상자 표시
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // 파일 확장자 가져오기
+                    string filePath = saveDialog.FileName;
+                    string fileExtension = System.IO.Path.GetExtension(filePath).ToLower();
+
+                    // 확장자에 따라 형식 결정
+                    ImageFormat format;
+                    switch (fileExtension)
+                    {
+                        case ".png":
+                            format = ImageFormat.Png;
+                            break;
+                        case ".jpg":
+                        case ".jpeg":
+                            format = ImageFormat.Jpeg;
+                            break;
+                        case ".bmp":
+                            format = ImageFormat.Bmp;
+                            break;
+                        default:
+                            MessageBox.Show("지원하지 않는 형식입니다.\n(.png, .jpg, .bmp만 지원합니다)", "오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                    }
+
+                    // 이미지 저장
+                    canvasBitmap.Save(filePath, format);
+                    MessageBox.Show($"파일이 저장되었습니다.\n경로: {filePath}", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"파일 저장 중 오류가 발생했습니다.\n{ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
