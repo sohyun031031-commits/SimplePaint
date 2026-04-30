@@ -61,6 +61,11 @@
 - 코드의 실행 스크린샷과 구현 내용 설명
 
 ![실행화면](img/screenshot-4.png)
+<img width="956" height="777" alt="스크린샷 2026-04-30 124619" src="https://github.com/user-attachments/assets/43a0886d-38d2-4477-be30-ca37a7857ce4" />
+<img width="716" height="586" alt="스크린샷 2026-04-30 124628" src="https://github.com/user-attachments/assets/66c8c008-0e0a-46f7-ab3e-37f8fabd50de" />
+<img width="716" height="585" alt="스크린샷 2026-04-30 124644" src="https://github.com/user-attachments/assets/02f1c68c-a0fe-48ae-87e9-ed4ec6f5ab03" />
+<img width="713" height="583" alt="스크린샷 2026-04-30 124655" src="https://github.com/user-attachments/assets/04e0dc91-3bb9-4a9c-b42a-151203dc071b" />
+
 
 - 구현한내용(위그림참조)
 	- 외부 이미지 파일을 불러와서 그림판에 표시하는 기능 구현
